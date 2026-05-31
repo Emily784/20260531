@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20260531</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+      // 在頁面載入時檢查深色模式偏好
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+    <nav class="bg-white dark:bg-slate-800 shadow-md dark:shadow-none dark:border-b dark:border-slate-700 p-4 sticky top-0 z-10">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl font-bold text-indigo-600">個人化讀書方法指南</h1>
+        <div class="flex items-center space-x-4">
+          <button onclick="router.navigate('home')" class="hover:text-indigo-500 dark:text-slate-300">首頁</button>
+          <button onclick="router.navigate('quiz')" class="hover:text-indigo-500 dark:text-slate-300">風格測驗</button>
+          <button onclick="router.navigate('planner')" class="hover:text-indigo-500 dark:text-slate-300">計畫產生器</button>
+          <button onclick="router.navigate('timer')" class="hover:text-indigo-500 dark:text-slate-300">番茄鐘</button>
+          <button onclick="router.toggleTheme()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors" title="切換深淺模式">
+            <svg id="theme-icon-dark" class="hidden dark:block w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+            <svg id="theme-icon-light" class="block dark:hidden w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div id="app" class="container mx-auto p-6"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
