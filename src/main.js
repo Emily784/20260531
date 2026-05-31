@@ -121,12 +121,12 @@ const router = {
             <img src="${m.image}" class="w-full h-48 object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" alt="${m.name}">
             <div class="p-6">
               <h3 class="text-xl font-bold mb-2 text-slate-800">${m.name}</h3>
-              <p class="text-gray-500 text-sm mb-4 leading-relaxed">${m.summary}</p>
-              <button onclick="router.toggleMethod(${index})" class="text-indigo-600 font-semibold text-sm hover:text-indigo-800 flex items-center transition-colors">
+              <p class="text-gray-600 dark:text-slate-400 text-base mb-4 leading-relaxed">${m.summary}</p>
+              <button onclick="router.toggleMethod(${index})" class="text-indigo-600 font-semibold text-base hover:text-indigo-800 flex items-center transition-colors">
                 <span>查看詳細說明</span>
                 <svg id="icon-${index}" class="w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
-              <div id="details-${index}" class="hidden mt-4 pt-4 border-t border-slate-50 text-gray-600 text-sm animate-fade-in">
+              <div id="details-${index}" class="hidden mt-4 pt-4 border-t border-slate-50 dark:border-slate-700 text-gray-700 dark:text-slate-300 text-base animate-fade-in">
                 ${m.desc}
               </div>
             </div>
@@ -157,11 +157,11 @@ const router = {
       <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg border border-transparent dark:border-slate-700">
         <div class="flex justify-between items-center mb-6">
           <h2 class="text-2xl font-bold dark:text-white">學習風格測驗</h2>
-          <span class="text-sm text-gray-500 dark:text-slate-400">問題 ${currentQuestionIndex + 1} / ${quizQuestions.length}</span>
+          <span class="text-base text-gray-500 dark:text-slate-400">問題 ${currentQuestionIndex + 1} / ${quizQuestions.length}</span>
         </div>
         <div id="quiz-content">
           <p class="text-lg mb-6 dark:text-slate-200">${question.q}</p>
-          <div class="space-y-3">
+          <div class="space-y-4">
             ${question.options.map(opt => `
               <button class="w-full text-left p-4 border dark:border-slate-700 rounded-lg hover:bg-indigo-50 dark:hover:bg-slate-700 transition-colors dark:text-slate-300" 
                 onclick="router.handleAnswer('${opt.type}')">${opt.text}</button>
@@ -200,27 +200,27 @@ const router = {
       <div class="max-w-md mx-auto">
         <div class="bg-white dark:bg-slate-800 p-10 rounded-3xl shadow-xl text-center border border-slate-100 dark:border-slate-700">
         <div class="flex justify-between items-center mb-6">
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase tracking-wider">${modeNames[timerMode]}</span>
-          <span class="text-slate-400 dark:text-slate-500 text-sm font-medium">進度: ${sessionsCompleted % 4}/4</span>
+          <span class="px-4 py-1.5 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-bold uppercase tracking-wider">${modeNames[timerMode]}</span>
+          <span class="text-slate-400 dark:text-slate-500 text-base font-medium">進度: ${sessionsCompleted % 4}/4</span>
         </div>
         
         <div class="grid grid-cols-3 gap-4 mb-8">
           <div>
-            <label class="text-[10px] text-slate-400 block mb-1 uppercase tracking-widest">專注</label>
+            <label class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">專注</label>
             <input type="number" value="${focusMinutes}" 
               ${timerInterval ? 'disabled' : ''}
               class="w-full text-center border-b-2 border-slate-100 dark:border-slate-700 focus:border-indigo-500 outline-none font-bold py-1 bg-transparent dark:text-white transition-colors"
               onchange="router.setTime('focus', this.value)">
           </div>
           <div>
-            <label class="text-[10px] text-slate-400 block mb-1 uppercase tracking-widest">短休息</label>
+            <label class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">短休息</label>
             <input type="number" value="${shortBreakMinutes}" 
               ${timerInterval ? 'disabled' : ''}
               class="w-full text-center border-b-2 border-slate-100 dark:border-slate-700 focus:border-indigo-500 outline-none font-bold py-1 bg-transparent dark:text-white transition-colors"
               onchange="router.setTime('shortBreak', this.value)">
           </div>
           <div>
-            <label class="text-[10px] text-slate-400 block mb-1 uppercase tracking-widest">長休息</label>
+            <label class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">長休息</label>
             <input type="number" value="${longBreakMinutes}" 
               ${timerInterval ? 'disabled' : ''}
               class="w-full text-center border-b-2 border-slate-100 dark:border-slate-700 focus:border-indigo-500 outline-none font-bold py-1 bg-transparent dark:text-white transition-colors"
@@ -241,12 +241,12 @@ const router = {
         </div>
         
         <div class="mt-10 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
-          <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">今日專注統計</p>
+          <p class="text-slate-500 text-sm uppercase tracking-widest mb-1">今日專注統計</p>
           <p class="text-2xl font-bold text-slate-700 dark:text-slate-200">已完成 <span class="text-indigo-600 dark:text-indigo-400">${dailyTotal}</span> 個番茄鐘</p>
-          <p class="text-[10px] text-slate-400 mt-1">累計專注約 ${dailyTotal * focusMinutes} 分鐘</p>
+          <p class="text-sm text-slate-400 mt-1">累計專注約 ${dailyTotal * focusMinutes} 分鐘</p>
         </div>
 
-        <p class="mt-8 text-slate-400 text-sm" id="timer-status">
+        <p class="mt-8 text-slate-400 text-base" id="timer-status">
           ${timerInterval ? '專注中，加油！' : '準備好開始了嗎？'}
         </p>
       </div>
@@ -272,10 +272,10 @@ const router = {
     return `
       <div class="mt-6 p-6 bg-white dark:bg-slate-800 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 animate-fade-in">
         <div class="flex justify-between items-center mb-4">
-          <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest flex items-center">
+          <h4 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest flex items-center">
             <span class="mr-2">📊</span> 學習熱點圖
           </h4>
-          <span class="text-[10px] text-slate-400">過去 30 天</span>
+          <span class="text-sm text-slate-400">過去 30 天</span>
         </div>
         <div class="grid grid-cols-10 gap-2">
           ${days.map(d => {
@@ -285,13 +285,13 @@ const router = {
             else if (d.count >= 1) color = 'bg-indigo-200 dark:bg-indigo-500/40'; // 1-3 次 (淺色)
             
             return `<div class="aspect-square rounded-sm ${color} group relative cursor-help transition-colors">
-              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap z-30 shadow-xl">
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-slate-800 text-white text-sm py-1.5 px-3 rounded whitespace-nowrap z-30 shadow-xl">
                 ${d.date}: ${d.count} 次完成
               </div>
             </div>`;
           }).join('')}
         </div>
-        <div class="mt-4 flex justify-between items-center text-[9px] text-slate-400 uppercase tracking-tighter">
+        <div class="mt-4 flex justify-between items-center text-xs text-slate-400 uppercase tracking-tighter">
           <span>30 天前</span>
           <div class="flex space-x-1 items-center">
             <div class="w-2 h-2 bg-slate-100 dark:bg-slate-700 rounded-sm"></div>
@@ -443,11 +443,11 @@ const router = {
       <div id="full-plan-export" class="bg-white dark:bg-slate-800 p-4 rounded-3xl">
         <div class="p-6 bg-indigo-50 dark:bg-slate-900/50 border border-indigo-100 dark:border-slate-700 rounded-2xl animate-fade-in">
           <h4 class="font-bold text-indigo-900 dark:text-indigo-300 mb-2">📅 專屬讀書計畫表</h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">距離目標還有 <b>${plan.daysLeft}</b> 天</p>
-          <div class="space-y-3 text-sm">
+          <p class="text-base text-slate-600 dark:text-slate-400 mb-4">距離目標還有 <b>${plan.daysLeft}</b> 天</p>
+          <div class="space-y-4 text-base">
             <div class="flex items-start"><span class="mr-2">🚀</span><span><b>衝刺期：</b>前 ${Math.floor(plan.daysLeft * 0.7)} 天重點攻略「${plan.goal}」。</span></div>
             <div class="flex items-start"><span class="mr-2">🔍</span><span><b>複習期：</b>最後 ${Math.ceil(plan.daysLeft * 0.3)} 天使用「${plan.method}法」進行弱點補強。</span></div>
-            <div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-indigo-100 dark:border-slate-700 mt-4 text-xs italic text-slate-500">
+            <div class="bg-white dark:bg-slate-800 p-3 rounded-lg border border-indigo-100 dark:border-slate-700 mt-4 text-sm italic text-slate-500">
               提示：系統已根據你的風格自動套用「${plan.method}法」。
             </div>
           </div>
@@ -458,7 +458,7 @@ const router = {
             <h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center">
               <span class="mr-2">📝</span> 今日任務拆解
             </h4>
-            <button onclick="router.clearCompletedTasks()" class="text-xs text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium transition-colors">清除已完成</button>
+            <button onclick="router.clearCompletedTasks()" class="text-sm text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium transition-colors">清除已完成</button>
           </div>
           <div id="tasks-container" class="space-y-2"></div>
         </div>
@@ -467,14 +467,14 @@ const router = {
       <div class="mt-6 flex flex-col items-center space-y-4">
         <div class="flex mb-4">
           <input type="text" id="new-task-input" 
-            class="flex-1 p-2 border dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-l-lg shadow-sm text-sm focus:ring-1 focus:ring-indigo-500 outline-none" 
+            class="flex-1 p-3 border dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-l-lg shadow-sm text-base focus:ring-1 focus:ring-indigo-500 outline-none" 
             placeholder="例如：完成課本 P.10 練習題...">
           <button onclick="router.addTask()" 
-            class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg text-sm font-bold hover:bg-indigo-700 transition-colors">
+            class="bg-indigo-600 text-white px-6 py-2 rounded-r-lg text-base font-bold hover:bg-indigo-700 transition-colors">
             新增
           </button>
         </div>
-        <button onclick="router.exportPlan()" class="bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-800 px-6 py-2 rounded-xl text-sm font-bold flex items-center space-x-2 hover:opacity-90 transition-opacity">
+        <button onclick="router.exportPlan()" class="bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-800 px-8 py-3 rounded-xl text-base font-bold flex items-center space-x-2 hover:opacity-90 transition-opacity">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
           <span>匯出計畫圖片</span>
         </button>
@@ -612,10 +612,10 @@ const router = {
             ${t.completed ? '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>' : ''}
           </div>
           ${editingTaskId === t.id ? 
-            `<input type="text" id="edit-input-${t.id}" class="flex-1 bg-transparent border-b border-indigo-500 outline-none text-sm dark:text-white" 
+            `<input type="text" id="edit-input-${t.id}" class="flex-1 bg-transparent border-b border-indigo-500 outline-none text-base dark:text-white" 
                value="${t.text}" onblur="router.finishEditing(${t.id}, this.value)" 
                onkeyup="if(event.key === 'Enter') router.finishEditing(${t.id}, this.value)">` :
-            `<span class="text-sm flex-1 cursor-pointer ${t.completed ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}"
+            `<span class="text-base flex-1 cursor-pointer ${t.completed ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}"
                onclick="router.toggleTask(${t.id})"
                ondblclick="event.stopPropagation(); router.startEditing(${t.id})">${t.text}</span>`
           }
